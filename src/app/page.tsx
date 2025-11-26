@@ -1,6 +1,10 @@
-// import Image from "next/image";
+import RecipeCard from "@/components/RecipeCard";
 
 export default function Home() {
-  return;
-  <h1>My first Next.js project</h1>;
+  return (
+    <main>
+      <h1 className="text-xl"> *My first Next.js project*</h1>
+      <RecipeCard></RecipeCard>
+    </main>
+  );
 }
