@@ -4,7 +4,9 @@ export interface Recipe {
   description: string;
   photo: string;
   ingredients: string[];
+  steps: string[];
   kcal: { calories: number; proteins: number; fats: number; carbs: number };
   category: "meat" | "poultry" | "fish" | "dessert" | "vegetables" | "salad";
   time: number; //minets
+  ketoScore: number;
 }
