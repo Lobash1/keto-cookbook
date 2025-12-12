@@ -4,5 +4,5 @@ export const categories = [
   { id: "fish", label: "Риба" },
   { id: "dessert", label: "Десерти" },
   { id: "vegetables", label: "Овочі" },
-  { id: "salad", label: "Салати" },
+  { id: "other", label: "Інше" },
 ];

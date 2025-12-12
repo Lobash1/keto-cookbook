@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
-import RecipeCard from "@/components/RecipeCard";
-import { recipes } from "@/data/recipes";
+import CategotyCard from "@/components/CategoryCard";
+import { categories } from "@/data/categories";
 
 export default function Home() {
   return (
@@ -22,44 +22,11 @@ export default function Home() {
       <h2 className="text-3xl font-bold text-ketoGold mb-6 text-center">
         Категорії рецептів
       </h2>
+      <div className="grid grid-cols-2 md:grid-cols3 lg:grid-cols-6 gap-4 p-6">
+        {categories.map((cat) => (
+          <CategotyCard key={cat.id} id={cat.id} label={cat.label} />
+        ))}
+      </div>
     </>
-
-    //     <main className="min-h-screen bg-ketoBlack text-ketoWhite p-6">
-    //       <div>
-    //         <img src="/hero.jpg" alt="hero" />
-    //         <div></div>
-    //         <div>
-    //           <h1
-    //             className="text-5xl text-center
-    //  font-bold text-ketoGold drop-shadow-[0_0_10px_rgba(255,209,102,0.6)]
-    //  mb-8"
-    //           >
-    //             «Преміальні Кето Рецепти»
-    //           </h1>
-    //           <p
-    //             className="text-xl text-center
-    //  font-bold text-ketoGold drop-shadow-[0_0_10px_rgba(255,209,102,0.6)]
-    //  mb-8"
-    //           >
-    //             Корисно, смачно і без зайвих вуглеводів
-    //           </p>
-
-    //           <div>
-    //             <button>М’ясо</button>
-    //             <button>Птиця</button>
-    //             <button>Риба</button>
-    //             <button>Десерти</button>
-    //             <button>Овочі</button>
-    //             <button>Салати</button>
-    //           </div>
-    //         </div>
-    //       </div>
-
-    //       {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-    //         {recipes.map((recipe) => (
-    //           <RecipeCard key={recipe.name} recipe={recipe} />
-    //         ))}
-    //       </div> */}
-    //     </main>
   );
 }

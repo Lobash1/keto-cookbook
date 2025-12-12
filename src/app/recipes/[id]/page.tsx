@@ -24,14 +24,15 @@ export default async function RecipePage({
         ← Назад
       </Link>
 
-      <div className="relative h-72 md:h-96 lg:h-[480px] xl:h-[600px] w-full text-white p-6">
+      {/* <div className="relative h-72 md:h-96 lg:h-[480px] xl:h-[600px] w-full text-white p-6"> */}
+      <div>
         <img
           src={recipe.photo}
           alt={recipe.name}
           className="w-full h-full object-cover rounded-b-xl"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+        {/* <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div> */}
 
         <h1 className="absolute bottom-4 left-4 text-3xl font-bold text-ketoGold">
           {recipe.name}
