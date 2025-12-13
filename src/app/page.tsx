@@ -22,9 +22,14 @@ export default function Home() {
       <h2 className="text-3xl font-bold text-ketoGold mb-6 text-center">
         Категорії рецептів
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols3 lg:grid-cols-6 gap-4 p-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 p-6">
         {categories.map((cat) => (
-          <CategotyCard key={cat.id} id={cat.id} label={cat.label} />
+          <CategotyCard
+            key={cat.id}
+            id={cat.id}
+            label={cat.label}
+            image={cat.image}
+          />
         ))}
       </div>
     </>
