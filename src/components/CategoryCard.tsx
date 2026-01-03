@@ -8,14 +8,11 @@ type Props = {
 
 export default function CategotyCard({ id, label, image }: Props) {
   return (
-    <Link href={`/category/${id}`}>
-      <div className="rounded-xl hover:-translate-y-1 transition">
-        {/* <p className="text-ketoWhite font-semibold text-lg">{label}</p> */}
+    <Link href={`/categories/${id}`} className="block">
+      <div className="rounded-xl overflow-hidden border border-ketoRed group transition hover:-translate-y-1 hover:shadow-ketoRed/40">
+        {/* <div className="rounded-xl hover:-translate-y-1 transition"> */}
 
-        <div
-          className="relative aspect-square
- h-48 rounded-xl overflow-hidden border border-ketoRed cursor-pointer group"
-        >
+        <div className="relative aspect-square">
           <div
             className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
             style={{ backgroundImage: `url(${image})` }}
