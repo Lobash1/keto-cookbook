@@ -72,56 +72,6 @@ export default async function RecipePage({
           <li key={`${recipe.id}-step-${index}`}>{step}</li>
         ))}
       </ol>
-
-      {/* 
-        <div className="p-6 text-ketoWhite max-w-3xl mx-auto">
-          <h2 className="text-2xl font-semibold text-ketoGold mb-2">
-            Інгредієнти
-          </h2>
-
-          <ul className="list-disc pl-6 mb-6 space-y-1">
-            {recipe.ingredients.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-
-          <h2 className="text-2xl font-semibold text-ketoGold mb-2">
-            КБЖУ на порцію
-          </h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 bg-black/40 p-4 rounded-xl border border-ketoRed/40">
-            <div>
-              <p className="text-sm text-ketoWhite/70">Калорії</p>
-              <p className="text-xl font-bold">{recipe.kcal.calories}</p>
-            </div>
-            <div>
-              <p className="text-sm text-ketoWhite/70">Білки</p>
-              <p className="text-xl font-bold">{recipe.kcal.proteins}</p>
-            </div>
-            <div>
-              <p className="text-sm text-ketoWhite/70">Жири</p>
-              <p className="text-xl font-bold">{recipe.kcal.fats}</p>
-            </div>
-            <div>
-              <p className="text-sm text-ketoWhite/70">Вуглеводи</p>
-              <p className="text-xl font-bold">{recipe.kcal.carbs}</p>
-            </div>
-            <div>
-              <p className="text-sm text-ketoWhite/70">Кето-бали</p>
-              <p className="text-xl font-bold text-ketoGold">{ketoPoints}</p>
-            </div>
-          </div>
-
-          <h2 className="text-2xl font-semibold text-ketoGold p-4 mb-2">
-            Спосіб приготування
-          </h2>
-
-          <ol className="list-decimal pl-6 space-y-2 text-ketoWhite/90">
-            {recipe.steps.map((step, index) => (
-              <li key={index}>{step}</li>
-            ))}
-          </ol>
-        </div> */}
     </section>
   );
 }

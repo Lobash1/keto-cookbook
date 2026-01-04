@@ -10,7 +10,6 @@ export default async function CategotyPage({
 }) {
   const { id: categoryId } = await params;
 
-  // const categoryId = params.id;
   const filtered = recipes.filter((r) => r.category === categoryId);
   const category = categories.find((c) => c.id === categoryId);
 
