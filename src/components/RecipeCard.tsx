@@ -8,21 +8,27 @@ type Props = {
 
 export default function RecipeCard({ recipe }: Props) {
   return (
-    <Link href={`/recipes/${recipe.id}`}>
-      <div className="bg-ketoBlack rounded-xl border border-ketoRed shadow-lg cursor-pointer transition hover:shadow-ketoRed/50">
-        <img
-          className="w-full h-48 object-cover rounded-t-xl transition-transform duration-300 hover:scale-105"
-          src={recipe.photo}
-          alt={recipe.name}
-        />
-
-        <div className="p-4 flex flex-col gap-2">
-          <h2 className="text-lg font-semibold text-ketoWhite">
-            {recipe.name}
-          </h2>
-          <p className="text-sm text-ketoGold"> ⏱ {recipe.time} мін</p>
+    <Link href={`/recipes/${recipe.id}`} className="block">
+      <article className="group bg-ketoBlack rounded-xl border border-ketoRed/40 overflow-hidden transition-shadow hover:shadow-[0_0_30px_rgba(220,38,38,0.35)]">
+        {/* IMAGE WRAPPER */}
+        <div className="relative h-48 overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={recipe.photo}
+            alt={recipe.name}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
         </div>
-      </div>
+
+        {/* CONTENT */}
+        <div className="p-4">
+          <h3 className="text-lg font-semibold text-white">{recipe.name}</h3>
+
+          <p className="mt-2 text-sm text-ketoGold flex items-center gap-2">
+            ⏱ {recipe.time} хв
+          </p>
+        </div>
+      </article>
     </Link>
   );
 }

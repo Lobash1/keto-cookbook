@@ -1,7 +1,7 @@
 import { categories } from "@/data/categories";
 import { recipes } from "../../../data/recipes";
 import RecipeCard from "@/components/RecipeCard";
-import Link from "next/link";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export default async function CategotyPage({
   params,
@@ -21,7 +21,15 @@ export default async function CategotyPage({
     );
 
   return (
-    <section>
+    <section className="max-w-6xl mx-auto px-4 py-10">
+      <Breadcrumbs
+        items={[
+          { label: "Головна", href: "/" },
+          { label: "Категорії", href: "/categories" },
+          { label: category.label },
+        ]}
+      />
+
       <h3 className="text-2xl text-ketoGold text-center font-bold mb-6">
         Категорія: {category.label}
       </h3>
@@ -36,9 +44,7 @@ export default async function CategotyPage({
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
           {filtered.map((r) => (
             <li key={r.id} className="text-white">
-              <Link href={`/recipes/${r.id}`} className="block">
-                <RecipeCard recipe={r} />
-              </Link>
+              <RecipeCard recipe={r} />
             </li>
           ))}
         </ul>

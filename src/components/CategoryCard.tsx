@@ -10,8 +10,6 @@ export default function CategotyCard({ id, label, image }: Props) {
   return (
     <Link href={`/categories/${id}`} className="block">
       <div className="rounded-xl overflow-hidden border border-ketoRed group transition hover:-translate-y-1 hover:shadow-ketoRed/40">
-        {/* <div className="rounded-xl hover:-translate-y-1 transition"> */}
-
         <div className="relative aspect-square">
           <div
             className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
