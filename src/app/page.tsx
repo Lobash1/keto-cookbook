@@ -1,3 +1,4 @@
+import AuthButton from "@/components/AuthButton";
 import CategoriesGrid from "@/components/CategoriesGrid";
 import Link from "next/link";
 
@@ -50,6 +51,7 @@ export default function Home() {
       </section>
 
       <section id="categories" className="max-w-7xl mx-auto px-6 py-16">
+        <AuthButton />
         <h2 className="text-3xl font-bold text-ketoGold mb-12 text-center">
           Категорії рецептів
         </h2>
