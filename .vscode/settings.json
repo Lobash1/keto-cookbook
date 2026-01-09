@@ -1,0 +1,17 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "tailwindCSS.includeLanguages": {
+    "typescriptreact": "javascript",
+    "javascriptreact": "javascript",
+    "html": "html"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "editor.inlineSuggest.enabled": true,
+  "files.associations": {
+    "*.css": "tailwindcss",
+    "*.tsx": "typescriptreact"
+  },
+  "tailwindCSS.emmetCompletions": true
+}

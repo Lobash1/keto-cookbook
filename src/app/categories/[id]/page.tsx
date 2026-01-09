@@ -1,7 +1,6 @@
 import { categories } from "@/data/categories";
-import { recipes } from "../../../data/recipes";
-import RecipeCard from "@/components/RecipeCard";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import RecipesClient from "@/app/recipes/RecipesClient";
 
 export default async function CategotyPage({
   params,
@@ -10,7 +9,6 @@ export default async function CategotyPage({
 }) {
   const { id: categoryId } = await params;
 
-  const filtered = recipes.filter((r) => r.category === categoryId);
   const category = categories.find((c) => c.id === categoryId);
 
   if (!category)
@@ -34,21 +32,7 @@ export default async function CategotyPage({
         Категорія: {category.label}
       </h3>
 
-      <p className="text-white/70 text-center">Found: {filtered.length}</p>
-
-      {filtered.length === 0 ? (
-        <p className="text-white text-center mt-6">
-          У цій категорії поки що немає рецептів
-        </p>
-      ) : (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-          {filtered.map((r) => (
-            <li key={r.id} className="text-white">
-              <RecipeCard recipe={r} />
-            </li>
-          ))}
-        </ul>
-      )}
+      <RecipesClient category={categoryId} />
     </section>
   );
 }
