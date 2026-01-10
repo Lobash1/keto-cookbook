@@ -8,11 +8,17 @@
   --foreground: #f3f1ea;
 }
 
+html.dark {
+  --background: #eed98e;
+  --foreground: #0d0d0d;
+}
+
 body {
   margin: 0;
   padding: 0;
   background: var(--background);
   color: var(--foreground);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 @keyframes badgeIn {
