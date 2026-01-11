@@ -1,16 +1,24 @@
-/* @import "tailwindcss"; */
+/* Tailwind import */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #0d0d0d;
-  --foreground: #f3f1ea;
+  --background: #f3f1ea;
+  --foreground: #0d0d0d;
+
+  --card-bg: #ffffff;
+  --card-border: rgba(0, 0, 0, 0.08);
+  --hero-overlay: rgba(255, 255, 255, 0.45);
 }
 
 html.dark {
-  --background: #eed98e;
-  --foreground: #0d0d0d;
+  --background: #0d0d0d;
+  --foreground: #f3f1ea;
+
+  --card-bg: #111111;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --hero-overlay: rgba(0, 0, 0, 0.5);
 }
 
 body {
@@ -21,6 +29,7 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
+/* Анимации бейджиков */
 @keyframes badgeIn {
   from {
     opacity: 0;
