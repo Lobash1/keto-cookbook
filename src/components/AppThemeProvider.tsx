@@ -10,9 +10,10 @@ type Props = {
 export default function AppThemeProvider({ children }: Props) {
   return (
     <ThemeProvider
-      attribute="class" // добавляет class="light" / "dark" на html
-      defaultTheme="dark" // по умолчанию тёмная
-      enableSystem={true} // можно учитывать системную тему
+      attribute="class"
+      defaultTheme="dark"
+      enableSystem={true}
+      disableTransitionOnChange
     >
       {children}
     </ThemeProvider>

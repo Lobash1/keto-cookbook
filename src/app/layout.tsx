@@ -1,8 +1,7 @@
 import "./globals.css";
 import { Montserrat } from "next/font/google";
 import AppThemeProvider from "@/components/AppThemeProvider";
-import ThemeToggle from "@/components/ThemeToggle";
-import AuthStatus from "@/components/AuthStatus";
+import Header from "@/components/Header";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -21,14 +20,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="uk" suppressHydrationWarning>
-      <body
-        className={`${montserrat.className} bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300`}
-        suppressHydrationWarning
-      >
+      <body className={montserrat.className}>
         <AppThemeProvider>
-          <ThemeToggle />
-          <AuthStatus />
-          {children}
+          <Header />
+          <main>{children}</main>
         </AppThemeProvider>
       </body>
     </html>

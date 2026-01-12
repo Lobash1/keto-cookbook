@@ -4,6 +4,7 @@ import { auth } from "@/lib/firebase";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function AuthButton() {
   const [loading, setLoading] = useState(false);
@@ -13,16 +14,15 @@ export default function AuthButton() {
       setLoading(true);
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
-      console.log("Вхід успішний!");
     } catch (error) {
       const err = error as FirebaseError;
 
       if (err.code === "auth/popup-closed-by-user") {
-        console.log("Користувач закрив вікно авторизації.");
+        console.log("Вікно авторизації закрито користувачем");
         return;
       }
 
-      console.error("Помилка при вході:", err);
+      console.error("Auth error:", err);
       alert("Не вдалося увійти. Спробуйте ще раз.");
     } finally {
       setLoading(false);
@@ -31,13 +31,35 @@ export default function AuthButton() {
 
   return (
     <button
+      type="button"
       onClick={login}
       disabled={loading}
-      className="rounded-xl bg-ketoGold text-ketoBlack font-semibold px-4 py-1.5 text-sm
-                 hover:bg-ketoGold/90 transition
-                 disabled:opacity-50 disabled:cursor-not-allowed"
+      className="
+        inline-flex items-center gap-2
+        rounded-xl px-4 py-2 text-sm font-semibold
+        transition disabled:opacity-50 disabled:cursor-not-allowed
+
+        bg-ketoGold text-ketoBlack
+        hover:bg-ketoGold/90
+      "
     >
-      {loading ? "Завантаження..." : "Увійти з Google"}
+      {loading ? (
+        <>
+          <span className="h-4 w-4 border-2 border-ketoBlack border-t-transparent rounded-full animate-spin" />
+          Завантаження...
+        </>
+      ) : (
+        <>
+          Увійти:
+          <Image
+            src="/google-icon.png"
+            alt="Google icon"
+            width={55}
+            height={35}
+            className="pointer-events-none"
+          />
+        </>
+      )}
     </button>
   );
 }

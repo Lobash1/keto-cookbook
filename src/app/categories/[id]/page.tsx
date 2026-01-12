@@ -13,13 +13,16 @@ export default async function CategotyPage({
 
   if (!category)
     return (
-      <div className="text-white p-6">
+      <div className="p-6" style={{ color: "var(--foreground)" }}>
         Такої категорії не існує: {categoryId}
       </div>
     );
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-10">
+    <section
+      className="max-w-6xl mx-auto px-4 py-10"
+      style={{ color: "var(--foreground)" }}
+    >
       <Breadcrumbs
         items={[
           { label: "Головна", href: "/" },

@@ -7,10 +7,7 @@ export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Чтобы не было бага с SSR: ждём, пока компонент смонтируется на клиенте
   useEffect(() => {
-    // Нам нужно 1 раз отметить, что компонент смонтирован,
-    // чтобы избежать проблем с SSR и next-themes.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
@@ -23,19 +20,18 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="
-        fixed right-6 top-6 z-50
-        flex items-center gap-2
-        rounded-full border border-ketoGold/40
-        bg-black/40 backdrop-blur
-        px-4 py-2 text-sm font-medium
-        text-ketoGold
-        hover:bg-ketoGold hover:text-ketoBlack
-        transition
-      "
+      className="flex items-center gap-1 rounded-full border px-3 py-1.5 text-xs sm:text-sm font-medium transition hover:opacity-80"
+      style={{
+        borderColor: "var(--card-border)",
+        background: "var(--card-bg)",
+        color: "var(--foreground)",
+      }}
       aria-label="Переключити тему"
     >
-      {isDark ? "☀️ Світла" : "🌙 Темна"}
+      <span>{isDark ? "☀️" : "🌙"}</span>
+      <span className="hidden sm:inline">
+        {isDark ? "Світла тема" : "Темна тема"}
+      </span>
     </button>
   );
 }

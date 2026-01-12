@@ -9,11 +9,11 @@ import type { Recipe } from "@/types/recipe";
 
 type RecipeDoc = Omit<Recipe, "id"> & {
   id: string;
-  createdAt?: unknown; // якщо потім додаси
+  createdAt?: unknown; 
 };
 
 type Props = {
-  category?: string; // <- опційна категорія
+  category?: string; 
 };
 
 export default function RecipesClient({ category }: Props) {
@@ -24,10 +24,12 @@ export default function RecipesClient({ category }: Props) {
   useEffect(() => {
     const load = async () => {
       try {
-        // базовый запрос
+       
+        
         let q = query(collection(db, "recipes"));
 
-        // если в пропсах передали category — добавляем фильтр
+      
+        
         if (category) {
           q = query(
             collection(db, "recipes"),
@@ -52,17 +54,26 @@ export default function RecipesClient({ category }: Props) {
     };
 
     load();
-  }, [category]); // важно: зависимость от category
+  }, [category]); 
 
-  if (loading) return <p className="text-white/70">Завантаження...</p>;
-  if (error) return <p className="text-red-400">Помилка: {error}</p>;
+  if (loading)
+    return (
+      <p className="mb-6 text-[color:var(--foreground)]/70">Завантаження...</p>
+    );
+
+  if (error)
+    return <p className="mb-6 text-sm text-red-500">Помилка: {error}</p>;
 
   return (
     <>
-      <p className="text-white/70 mb-6">Found: {recipes.length}</p>
+      <p className="mb-6 text-[color:var(--foreground)]/70">
+        Found: {recipes.length}
+      </p>
 
       {recipes.length === 0 ? (
-        <p className="text-white/70">Поки що немає рецептів у базі.</p>
+        <p className="text-[color:var(--foreground)]/70">
+          Поки що немає рецептів у базі.
+        </p>
       ) : (
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {recipes.map((r) => (
