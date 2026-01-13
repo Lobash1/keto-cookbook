@@ -11,13 +11,11 @@ export default function CategoryCard({ id, label, image }: Props) {
     <Link href={`/categories/${id}`} className="block">
       <div className="rounded-xl overflow-hidden border border-ketoRed/40 group transition hover:-translate-y-1">
         <div className="relative aspect-square">
-          {/* Фото */}
           <div
             className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
             style={{ backgroundImage: `url(${image})` }}
           />
 
-          {/* Более тёмный оверлей для обеих тем */}
           <div
             className="
               absolute inset-0 

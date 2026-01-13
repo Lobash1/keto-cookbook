@@ -50,7 +50,7 @@ export default function Home() {
               </a>
 
               <Link
-                href="#newrecipe"
+                href="/add-recipe"
                 className="inline-flex justify-center items-center rounded-xl px-6 py-3 font-semibold transition"
                 style={{
                   borderColor: "var(--card-border)",

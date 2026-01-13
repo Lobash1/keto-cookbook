@@ -6,6 +6,10 @@ type Props = {
 };
 
 export default function RecipeCard({ recipe }: Props) {
+  const imageSrc =
+    recipe.photo && recipe.photo.trim() !== ""
+      ? recipe.photo
+      : "/placeholder.jpg";
   return (
     <article
       className="
@@ -19,7 +23,7 @@ export default function RecipeCard({ recipe }: Props) {
     >
       <div className="relative h-48 overflow-hidden">
         <img
-          src={recipe.photo}
+          src={imageSrc}
           alt={recipe.name}
           className="
             h-full w-full object-cover 
