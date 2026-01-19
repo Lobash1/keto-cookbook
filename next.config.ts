@@ -7,7 +7,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "img.delovoy-vkus.ru",
+        hostname: "firebasestorage.googleapis.com",
+        pathname: "/v0/b/**",
       },
     ],
   },

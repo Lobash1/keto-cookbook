@@ -156,8 +156,8 @@ export default function RecipePageClient({ id }: Props) {
 
       <h2 className="text-2xl font-bold mt-10">Інгредієнти</h2>
       <ul className="list-disc pl-6 mt-3 text-[color:var(--foreground)]/80">
-        {recipe.ingredients.map((ing) => (
-          <li key={ing}>{ing}</li>
+        {recipe.ingredients.map((ing, index) => (
+          <li key={`${recipe.id}-ing-${index}`}>{ing}</li>
         ))}
       </ul>
 

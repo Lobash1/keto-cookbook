@@ -78,3 +78,18 @@ body {
 .badge-in-delay {
   animation-delay: 120ms;
 }
+
+@keyframes toast-slide {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.animate-toast {
+  animation: toast-slide 0.35s ease-out;
+}

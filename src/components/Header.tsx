@@ -13,6 +13,7 @@ export default function Header() {
 
   // ждём, пока компонент смонтируется
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 

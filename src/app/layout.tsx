@@ -2,6 +2,7 @@ import "./globals.css";
 import { Montserrat } from "next/font/google";
 import AppThemeProvider from "@/components/AppThemeProvider";
 import Header from "@/components/Header";
+import { ToastProvider } from "@/components/toast/ToastProvider";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -21,10 +22,12 @@ export default function RootLayout({
   return (
     <html lang="uk" suppressHydrationWarning>
       <body className={montserrat.className}>
-        <AppThemeProvider>
-          <Header />
-          <main>{children}</main>
-        </AppThemeProvider>
+        <ToastProvider>
+          <AppThemeProvider>
+            <Header />
+            <main>{children}</main>
+          </AppThemeProvider>
+        </ToastProvider>
       </body>
     </html>
   );
