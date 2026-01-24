@@ -3,19 +3,24 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { useRouter } from "next/navigation";
+
+import { doc, getDoc, deleteDoc } from "firebase/firestore";
+import { ref as storageRef, deleteObject } from "firebase/storage";
+
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { categories } from "@/data/categories";
 import type { Recipe } from "@/types/recipe";
+import { auth, db, storage } from "@/lib/firebase";
+import { useToast } from "@/components/toast/ToastProvider";
 
-type Props = {
-  id: string;
-};
-
-type RecipeDoc = Recipe; // у нас тип уже описан
+type Props = { id: string };
+type RecipeDoc = Recipe;
 
 export default function RecipePageClient({ id }: Props) {
+  const router = useRouter();
+  const { showToast } = useToast();
+
   const [recipe, setRecipe] = useState<RecipeDoc | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -23,8 +28,8 @@ export default function RecipePageClient({ id }: Props) {
   useEffect(() => {
     const load = async () => {
       try {
-        const ref = doc(db, "recipes", id);
-        const snap = await getDoc(ref);
+        const docRef = doc(db, "recipes", id);
+        const snap = await getDoc(docRef);
 
         if (!snap.exists()) {
           setRecipe(null);
@@ -32,7 +37,6 @@ export default function RecipePageClient({ id }: Props) {
           return;
         }
 
-        // doc.id мы уже знаем из пропса
         const data = snap.data() as Omit<Recipe, "id">;
         setRecipe({ ...data, id });
       } catch (e) {
@@ -68,6 +72,9 @@ export default function RecipePageClient({ id }: Props) {
     );
   }
 
+  const isOwner =
+    !!auth.currentUser?.uid && recipe.authorId === auth.currentUser.uid;
+
   const ketoPoints = Math.round(recipe.kcal.carbs);
   const category = categories.find((c) => c.id === recipe.category);
 
@@ -75,6 +82,26 @@ export default function RecipePageClient({ id }: Props) {
     recipe.photo && recipe.photo.trim() !== ""
       ? recipe.photo
       : "/placeholder.jpg";
+
+  const handleDelete = async () => {
+    if (!confirm("Видалити рецепт назавжди?")) return;
+
+    try {
+      // если хранишь photoPath в документе — удалим файл
+      const photoPath = recipe.photoPath;
+      if (photoPath) {
+        await deleteObject(storageRef(storage, photoPath));
+      }
+
+      await deleteDoc(doc(db, "recipes", recipe.id));
+
+      showToast("Рецепт видалено", "success", 2500);
+      router.push("/recipes");
+    } catch (e) {
+      console.error(e);
+      showToast("Не вдалося видалити рецепт", "error", 3000);
+    }
+  };
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-10 text-[color:var(--foreground)]">
@@ -92,16 +119,31 @@ export default function RecipePageClient({ id }: Props) {
 
       <Link
         href={`/categories/${recipe.category}`}
-        className="inline-flex items-center gap-2 mb-7 px-4 py-2 rounded-lg
-                   border text-sm
-                   hover:opacity-80 transition"
-        style={{
-          borderColor: "var(--foreground)",
-          color: "var(--foreground)",
-        }}
+        className="inline-flex items-center gap-2 mb-7 px-4 py-2 rounded-lg border text-sm hover:opacity-80 transition"
+        style={{ borderColor: "var(--foreground)", color: "var(--foreground)" }}
       >
         ← Назад
       </Link>
+
+      {isOwner && (
+        <div className="flex gap-3 mb-7">
+          <button
+            type="button"
+            onClick={() => router.push(`/recipes/${recipe.id}/edit`)}
+            className="px-4 py-2 rounded-lg border border-ketoGold/60 text-ketoGold hover:opacity-80 transition"
+          >
+            Редагувати
+          </button>
+
+          <button
+            type="button"
+            onClick={handleDelete}
+            className="px-4 py-2 rounded-lg border border-red-500/60 text-red-300 hover:opacity-80 transition"
+          >
+            Видалити
+          </button>
+        </div>
+      )}
 
       <h1 className="text-3xl font-bold text-ketoGold">{recipe.name}</h1>
       <p className="mt-2 text-[color:var(--foreground)]/70">
@@ -113,6 +155,7 @@ export default function RecipePageClient({ id }: Props) {
           src={imageSrc}
           alt={recipe.name}
           fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 900px"
           className="object-cover object-[50%_60%]"
           loading="eager"
           priority

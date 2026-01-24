@@ -6,6 +6,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { auth, db, storage } from "@/lib/firebase";
 import { useToast } from "@/components/toast/ToastProvider";
+import path from "path";
 
 export default function AddRecipeForm() {
   const router = useRouter();
@@ -32,9 +33,11 @@ export default function AddRecipeForm() {
         return;
       }
 
-      // 1) Upload to Storage
-      const path = `recipes/${Date.now()}_${imageFile.name}`;
-      const storageRef = ref(storage, path);
+      const safeName = imageFile.name.replace(/\s+/g, "_");
+      const photoPath = `recipes/${
+        auth.currentUser?.uid ?? "anon"
+      }/${Date.now()}_${safeName}`;
+      const storageRef = ref(storage, photoPath);
 
       await uploadBytes(storageRef, imageFile);
       const photo = await getDownloadURL(storageRef);
@@ -46,6 +49,7 @@ export default function AddRecipeForm() {
         category: formData.get("category") as string,
         time: Number(formData.get("time")) || 0,
         photo,
+        photoPath: path,
         ingredients: (formData.get("ingredients") as string)
           .split("\n")
           .map((i) => i.trim())

@@ -11,13 +11,11 @@ export default function Header() {
   const [mounted, setMounted] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
-  // ждём, пока компонент смонтируется
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
-  // слушаем авторизацию
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (firebaseUser) => {
       setUser(firebaseUser);
@@ -44,13 +42,11 @@ export default function Header() {
         color: "var(--foreground)",
       }}
     >
-      {/* ЛОГО */}
       <Link href="/" className="font-semibold text-sm sm:text-base">
         Keto Cookbook
       </Link>
 
       <div className="flex items-center gap-3">
-        {/* КНОПКА ДОБАВИТЬ РЕЦЕПТ */}
         {isLoggedIn ? (
           <Link
             href="/add-recipe"
@@ -83,7 +79,6 @@ export default function Header() {
           </div>
         )}
 
-        {/* Статус и переключение темы */}
         <AuthStatus />
         <ThemeToggle />
       </div>

@@ -1,4 +1,3 @@
-// src/app/page.tsx
 import CategoriesGrid from "@/components/CategoriesGrid";
 import Link from "next/link";
 
@@ -6,7 +5,6 @@ export default function Home() {
   return (
     <>
       <section className="relative min-h-screen overflow-hidden">
-        {/* фон-картинка */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/hero-meat.jpg"
@@ -14,7 +12,6 @@ export default function Home() {
           className="absolute inset-0 w-full h-full object-cover"
         />
 
-        {/* общий overlay из переменной – без круглой маски */}
         <div
           className="absolute inset-0"
           style={{ background: "var(--hero-overlay)" }}
