@@ -54,9 +54,10 @@ export default function AuthButton() {
           <Image
             src="/google-icon.png"
             alt="Google icon"
-            width={55}
-            height={35}
+            width={20}
+            height={20}
             className="pointer-events-none"
+            priority
           />
         </>
       )}
