@@ -10,7 +10,7 @@ export interface Recipe {
   category: "meat" | "poultry" | "fish" | "dessert" | "vegetables" | "other";
   time: number; //minets
   ketoScore?: number;
-
+  url?: string;
   authorId: string | null;
   authorName: string | null;
 }

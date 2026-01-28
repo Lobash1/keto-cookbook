@@ -210,6 +210,16 @@ export default function RecipePageClient({ id }: Props) {
           <li key={`${recipe.id}-step-${index}`}>{step}</li>
         ))}
       </ol>
+      {recipe.url?.trim() && (
+        <a
+          href={recipe.url}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 mt-4 text-ketoGold underline underline-offset-4 hover:opacity-90"
+        >
+          Відео приготування рецепту ↗
+        </a>
+      )}
     </section>
   );
 }

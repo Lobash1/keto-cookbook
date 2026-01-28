@@ -171,6 +171,7 @@ export default function RecipeEditClient({ id }: Props) {
             fats: recipe.kcal?.fats ?? 0,
             carbs: recipe.kcal?.carbs ?? 0,
           },
+          url: recipe.url?.trim() || "",
           photo: nextPhotoUrl,
           photoPath: nextPhotoPath,
         };
@@ -227,9 +228,7 @@ export default function RecipeEditClient({ id }: Props) {
 
         {/* фото: только замена файла */}
         <div className="space-y-2">
-          <p className="text-sm text-[color:var(--foreground)]/70">
-            Фото (за потреби заміни)
-          </p>
+          <p className="text-sm text-[color:var(--foreground)]/70">Фото</p>
           <input
             type="file"
             accept="image/*"
@@ -300,6 +299,19 @@ export default function RecipeEditClient({ id }: Props) {
           onChange={onChangeMultiline("steps")}
           placeholder="Спосіб приготування (кожен з нового рядка)"
           rows={4}
+          className="w-full p-3 rounded-xl bg-black/30 border border-ketoRed/40"
+        />
+
+        <label className="block text-sm mb-1">TikTok або YouTube link</label>
+        <input
+          type="url"
+          value={recipe.url ?? ""}
+          onChange={(e) =>
+            setRecipe((prev) =>
+              prev ? { ...prev, url: e.target.value } : prev
+            )
+          }
+          placeholder="https://www.tiktok.com/@user/video/123..."
           className="w-full p-3 rounded-xl bg-black/30 border border-ketoRed/40"
         />
 

@@ -6,12 +6,14 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { auth, db, storage } from "@/lib/firebase";
 import { useToast } from "@/components/toast/ToastProvider";
-import path from "path";
+import { Recipe } from "@/types/recipe";
+// import path from "path";
 
 export default function AddRecipeForm() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [url, setUrl] = useState("");
   const { showToast } = useToast();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,10 +48,10 @@ export default function AddRecipeForm() {
       const recipe = {
         name: formData.get("name") as string,
         description: (formData.get("description") as string) || "",
-        category: formData.get("category") as string,
+        category: (formData.get("category") as Recipe["category"]) ?? "other",
         time: Number(formData.get("time")) || 0,
         photo,
-        photoPath: path,
+        photoPath,
         ingredients: (formData.get("ingredients") as string)
           .split("\n")
           .map((i) => i.trim())
@@ -64,6 +66,7 @@ export default function AddRecipeForm() {
           fats: Number(formData.get("fats")) || 0,
           carbs: Number(formData.get("carbs")) || 0,
         },
+        url: url?.trim() || "",
         authorId: auth.currentUser?.uid || null,
         authorName: auth.currentUser?.displayName || null,
         createdAt: serverTimestamp(),
@@ -72,10 +75,6 @@ export default function AddRecipeForm() {
       const docRef = await addDoc(collection(db, "recipes"), recipe);
 
       showToast("Рецепт успішно додано!", "success");
-
-      setTimeout(() => {
-        router.push(`/recipes/${docRef.id}`);
-      }, 900);
 
       // 3) Redirect
       router.push(`/recipes/${docRef.id}`);
@@ -177,6 +176,17 @@ export default function AddRecipeForm() {
         name="steps"
         rows={4}
         placeholder="Спосіб приготування (кожен з нового рядка)"
+        className="w-full p-3 rounded-xl bg-black/30 border border-ketoRed/40"
+      />
+
+      <label className="block text-sm text-ketoWhite/80">
+        TikTok або YouTube link
+      </label>
+      <input
+        type="url"
+        value={url}
+        onChange={(e) => setUrl(e.target.value)}
+        placeholder="https://www.tiktok.com/@user/video/123..."
         className="w-full p-3 rounded-xl bg-black/30 border border-ketoRed/40"
       />
 
