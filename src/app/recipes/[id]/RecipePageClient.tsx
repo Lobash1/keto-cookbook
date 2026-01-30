@@ -103,6 +103,33 @@ export default function RecipePageClient({ id }: Props) {
     }
   };
 
+  function isTikTok(url: string) {
+    return url.includes("tiktok.com");
+  }
+
+  function getYouTubeId(url: string) {
+    try {
+      const u = new URL(url);
+      if (u.hostname.includes("youtu.be")) {
+        return u.pathname.replace("/", "");
+      }
+
+      if (u.searchParams.get("v")) {
+        return u.searchParams.get("v");
+      }
+
+      const shorts = u.pathname.match(/\/shorts\/([^/]+)/);
+      if (shorts?.[1]) return shorts[1];
+
+      const embed = u.pathname.match(/\/embed\/([^/]+)/);
+      if (embed?.[1]) return embed[1];
+
+      return null;
+    } catch {
+      return null;
+    }
+  }
+
   return (
     <section className="max-w-6xl mx-auto px-4 py-10 text-[color:var(--foreground)]">
       <Breadcrumbs
@@ -210,16 +237,47 @@ export default function RecipePageClient({ id }: Props) {
           <li key={`${recipe.id}-step-${index}`}>{step}</li>
         ))}
       </ol>
-      {recipe.url?.trim() && (
-        <a
-          href={recipe.url}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-2 mt-4 text-ketoGold underline underline-offset-4 hover:opacity-90"
-        >
-          Відео приготування рецепту ↗
-        </a>
-      )}
+      {recipe.url?.trim() &&
+        (() => {
+          const link = recipe.url.trim();
+          const ytId = getYouTubeId(link);
+          if (ytId) {
+            return (
+              <div className="mt-4 rounded-xl overflow-hidden border border-ketoRed/40">
+                <iframe
+                  src={`https://www.youtube.com/embed/${ytId}`}
+                  title="YouTube video"
+                  className="w-full aspect-video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            );
+          }
+
+          if (isTikTok(link)) {
+            return (
+              <a
+                href={link}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg border border-ketoGold/50 text-ketoGold hover:opacity-90 transition"
+              >
+                Відео (TikTok) ↗
+              </a>
+            );
+          }
+          return (
+            <a
+              href={link}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg border border-ketoGold/50 text-ketoGold hover:opacity-90 transition"
+            >
+              Відео ↗
+            </a>
+          );
+        })()}
     </section>
   );
 }
