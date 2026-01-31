@@ -9,23 +9,17 @@
 
   --header-bg: rgba(255, 255, 255, 0.7);
 
-  /* карточки */
   --card-bg: rgba(13, 13, 13, 0.9);
   --card-border: rgba(243, 241, 234, 0.16);
 
-  /* overlay поверх фоновой фотки херо */
   --hero-overlay: rgba(0, 0, 0, 0.55);
 }
 
-/* светлая тема */
 html.light {
   --background: #f5efe0;
   --foreground: #20150f;
-
   --card-bg: rgba(255, 252, 244, 0.92);
   --card-border: rgba(32, 21, 15, 0.12);
-
-  /* делаем мягкое затемнение, а не белое пятно */
   --hero-overlay: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.35) 0%,
@@ -33,13 +27,10 @@ html.light {
   );
 }
 
-/* тёмная тема */
 html.dark {
   --background: #050506;
   --foreground: #f3f1ea;
-
   --header-bg: rgba(0, 0, 0, 0.5);
-
   --card-bg: rgba(10, 10, 10, 0.9);
   --card-border: rgba(243, 241, 234, 0.16);
   --hero-overlay: linear-gradient(

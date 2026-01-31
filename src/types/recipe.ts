@@ -8,7 +8,7 @@ export interface Recipe {
   steps: string[];
   kcal: { calories: number; proteins: number; fats: number; carbs: number };
   category: "meat" | "poultry" | "fish" | "dessert" | "vegetables" | "other";
-  time: number; //minets
+  time: number;
   ketoScore?: number;
   url?: string;
   authorId: string | null;

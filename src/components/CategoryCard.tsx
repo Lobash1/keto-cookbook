@@ -26,7 +26,6 @@ export default function CategoryCard({ id, label, image }: Props) {
             "
           />
 
-          {/* Текст — с контрастом для light/dark */}
           <p
             className="
               absolute inset-0 flex items-center justify-center 

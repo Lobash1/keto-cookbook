@@ -7,7 +7,6 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { auth, db, storage } from "@/lib/firebase";
 import { useToast } from "@/components/toast/ToastProvider";
 import { Recipe } from "@/types/recipe";
-// import path from "path";
 
 export default function AddRecipeForm() {
   const router = useRouter();
@@ -186,7 +185,7 @@ export default function AddRecipeForm() {
         type="url"
         value={url}
         onChange={(e) => setUrl(e.target.value)}
-        placeholder="https://www.tiktok.com/@user/video/123..."
+        placeholder="https://..."
         className="w-full p-3 rounded-xl bg-black/30 border border-ketoRed/40"
       />
 

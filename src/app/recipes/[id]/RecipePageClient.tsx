@@ -87,7 +87,7 @@ export default function RecipePageClient({ id }: Props) {
     if (!confirm("Видалити рецепт назавжди?")) return;
 
     try {
-      // если хранишь photoPath в документе — удалим файл
+
       const photoPath = recipe.photoPath;
       if (photoPath) {
         await deleteObject(storageRef(storage, photoPath));

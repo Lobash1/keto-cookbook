@@ -226,7 +226,6 @@ export default function RecipeEditClient({ id }: Props) {
           <option value="other">Інше</option>
         </select>
 
-        {/* фото: только замена файла */}
         <div className="space-y-2">
           <p className="text-sm text-[color:var(--foreground)]/70">Фото</p>
           <input
@@ -311,7 +310,7 @@ export default function RecipeEditClient({ id }: Props) {
               prev ? { ...prev, url: e.target.value } : prev
             )
           }
-          placeholder="https://www.tiktok.com/@user/video/123..."
+          placeholder="https://..."
           className="w-full p-3 rounded-xl bg-black/30 border border-ketoRed/40"
         />
 

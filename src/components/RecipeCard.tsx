@@ -26,7 +26,6 @@ export default function RecipeCard({ recipe }: Props) {
         hover:shadow-[0_0_30px_rgba(220,38,38,0.25)]
       "
     >
-      {/* media */}
       <div className="relative h-56 w-full">
         <img
           src={src}
@@ -40,13 +39,10 @@ export default function RecipeCard({ recipe }: Props) {
           "
         />
 
-        {/* градиент чтобы текст читался */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
 
-        {/* рамка-оверлей, чтобы текст не “влазил” под border */}
         <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-ketoRed/30 group-hover:ring-ketoGold/30" />
 
-        {/* текст поверх картинки */}
         <div className="absolute inset-x-0 bottom-0 p-4">
           <h3 className="text-lg font-semibold leading-snug text-ketoWhite drop-shadow">
             {recipe.name}
