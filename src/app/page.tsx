@@ -35,7 +35,7 @@ export default function Home() {
 
             <p className="text-center mt-7 text-base md:text-lg opacity-80">
               Зберігай улюблені рецепти та додавай нові — твій особистий
-              кето-щоденник.
+              кето-щоденник
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
