@@ -121,16 +121,6 @@ npm run start — run production build
 
 npm run lint — lint project
 
-📌 Roadmap (optional)
-
-Favorites
-
-Filters (with/without video)
-
-Search by name/ingredients
-
-Pagination
-
 👩‍💻 Author
 
 Lobash Anastasiia

@@ -87,7 +87,6 @@ export default function RecipePageClient({ id }: Props) {
     if (!confirm("Видалити рецепт назавжди?")) return;
 
     try {
-
       const photoPath = recipe.photoPath;
       if (photoPath) {
         await deleteObject(storageRef(storage, photoPath));
@@ -177,7 +176,7 @@ export default function RecipePageClient({ id }: Props) {
         {recipe.description}
       </p>
 
-      <div className="group relative w-full mt-6 rounded-xl overflow-hidden border border-ketoRed/40 h-64 sm:h-72 md:h-96 lg:h-[420px]">
+      <div className="group relative w-full mt-6 rounded-xl overflow-hidden border border-ketoRed/40 h-74 sm:h-72 md:h-96 lg:h-[520px]">
         <Image
           src={imageSrc}
           alt={recipe.name}
