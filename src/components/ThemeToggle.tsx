@@ -29,9 +29,7 @@ export default function ThemeToggle() {
       aria-label="Переключити тему"
     >
       <span>{isDark ? "☀️" : "🌙"}</span>
-      <span className="hidden sm:inline">
-        {isDark ? "Світла тема" : "Темна тема"}
-      </span>
+      <span className="hidden sm:inline">{isDark ? "Light" : "Dark"}</span>
     </button>
   );
 }

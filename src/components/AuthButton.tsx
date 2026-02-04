@@ -36,7 +36,7 @@ export default function AuthButton() {
       disabled={loading}
       className="
         inline-flex items-center gap-2
-        rounded-xl px-4 py-2 text-sm font-semibold
+        rounded-xl px-4 py-2 text-start font-semibold
         transition disabled:opacity-50 disabled:cursor-not-allowed
 
         bg-ketoGold text-ketoBlack

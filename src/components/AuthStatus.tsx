@@ -39,7 +39,7 @@ export default function AuthStatus() {
   return (
     <div className="flex items-center gap-3 text-xs sm:text-sm">
       <div className="flex items-center gap-2">
-        <div className="w-8 h-8 rounded-full bg-ketoGold text-ketoBlack flex items-center justify-center font-bold text-sm">
+        <div className="w-6 h-6 rounded-full bg-ketoGold text-ketoBlack flex items-center justify-center font-bold text-sm">
           {letter}
         </div>
         <div className="flex flex-col">

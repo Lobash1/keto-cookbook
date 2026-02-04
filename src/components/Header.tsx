@@ -51,7 +51,7 @@ export default function Header() {
           <Link
             href="/add-recipe"
             className="
-              rounded-lg px-3 py-1.5 text-sm font-semibold
+              rounded-lg px-2 py-1.5 text-sm font-semibold
               border transition
               hover:opacity-80
             "
@@ -60,12 +60,12 @@ export default function Header() {
               color: "var(--foreground)",
             }}
           >
-            ➕ Додати рецепт
+            Додати рецепт
           </Link>
         ) : (
           <div
             className="
-              rounded-lg px-3 py-1.5 text-sm font-semibold border opacity-40
+              rounded-lg px-3 py-1.5 text-start font-semibold border opacity-40
               cursor-not-allowed select-none
               relative
             "
@@ -75,7 +75,7 @@ export default function Header() {
             }}
             title="Увійдіть, щоб додати рецепт"
           >
-            ➕ Додати рецепт
+            Додати рецепт
           </div>
         )}
 
